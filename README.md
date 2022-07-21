@@ -3,6 +3,7 @@ Based on several existing games, here are some reproductions of these games usin
 
 - Jogo do dinossauro
 - Jogo da memória
+- Genius
 - Jogo da nave
 - Jogo de bater com martelo no esquilo
 - Snake
