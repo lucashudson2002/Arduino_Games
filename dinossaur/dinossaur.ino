@@ -1,5 +1,6 @@
 //velocidade ja aumenta com o tempo
 //colocar mais obsctaculos com o tempo, e variar a distanci entre eles
+//variar tempo de pulo
 #include <Adafruit_LiquidCrystal.h>
 
 #define BTN_LOWER 2
