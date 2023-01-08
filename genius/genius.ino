@@ -1,9 +1,9 @@
-#define BUZZER 11
-#define BTN_CONTROL 2
+#define BUZZER 6
+#define BTN_CONTROL 3
 
-const byte LED_CONTROL[] = {A5, A4, A3};
-const byte BTNS[] = {9, 7, 5, 3};
-const byte LEDS[] = {10, 8, 6, 4};
+const byte LED_CONTROL[] = {2, 1, 0};
+const byte BTNS[] = {A5, 4, 8, 9};
+const byte LEDS[] = {A4, 5, 7, 10};
 
 #define MAX_BLINK 31
 #define DELAY 500
