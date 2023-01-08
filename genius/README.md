@@ -20,7 +20,7 @@
 ## Tinkercad
 - Fiz uma simulação antes no Tinkercad para facilitar no teste inicial tanto da eletrônica quando da programação, a foto está anexada abaixo:
 
-![](tinkercad_genius.jpg)
+![](tinkercad_genius.png)
 
 ## Software
 - Utilizei a Arduino IDE para programar.
