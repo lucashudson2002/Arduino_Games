@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <link rel='icon' href='./icon.png' type='image/png'>
+    <title> Meteorology </title>
+    <style>
+      body {
+        text-align: center;
+        margin: 0;
+        height: 100%;
+      }
+      header {
+        background-color: lightblue;
+        font-size: 40px;
+        padding: 10px;
+      }
+      article{
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+      footer {
+        background-color: grey;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
+      img {
+        margin: 10px;
+      }
+    </style>
+    <script>
+      setInterval(function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/sensors', true);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            var txt = xhr.responseText;
+            var txt = txt.split('/');
+            document.getElementById('temperature').innerHTML = txt[0];
+            document.getElementById('humidity').innerHTML = txt[1];
+            document.getElementById('luminosity').innerHTML = txt[2];
+            document.getElementById('atmospheric-pressure').innerHTML = txt[3];
+          }
+        }
+        xhr.send();
+      }, 1000);
+    </script>
+  </head>
+  <body>
+    <header> <strong> Weather Station </strong> </header>
+	
+    <article>
+      <strong> Temperature: </strong>
+      <span id='temperature'> - oC </span> <br>
+      <strong> Humidity: </strong> 
+      <span id='humidity'> -% </span> <br>
+      <strong> Luminosity: </strong>
+      <span id='luminosity'> -% </span> <br>
+      <strong> Atmospheric pressure: </strong>
+      <span id='atmospheric-pressure'> - Pa </span> <br>
+    </article>
+
+    <footer>
+      <a href='https://github.com/lucashudson2002/' target='_blank'>
+        <img src='github.png' alt='Link GitHub' width='75' height='75'>
+      </a>
+
+      <a href='https://www.linkedin.com/in/lucas-hudson-mg/' target='_blank'>
+        <img src='linkedin.png' alt='Link Linkedin' width='75' height='75'>
+      </a>
+    </footer>
+  </body>
+</html>
