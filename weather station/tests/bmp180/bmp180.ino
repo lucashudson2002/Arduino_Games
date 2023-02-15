@@ -1,28 +1,24 @@
 #include <Wire.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_BMP085_U.h>
+#include <Adafruit_BMP085.h>
 
-Adafruit_BMP085_Unified bmp = Adafruit_BMP085_Unified(10085);
+Adafruit_BMP085 bmp;
 
 void setup() {
+  Wire.begin();
+
   Serial.begin(115200);
-  if (!bmp.begin()) {
-    Serial.println("Não foi possível inicializar o BMP180");
-    while (1);
+
+  if (!bmp.begin()) 
+  {
+    Serial.println("Sensor BMP085 nao encontrado, verifique as conexoes!");
+    while (1) {}
   }
 }
 
 void loop() {
-  sensors_event_t event;
-  bmp.getEvent(&event);
-
-  if (event.pressure) {
-    Serial.print("Pressão atmosférica: ");
-    Serial.print(event.pressure);
-    Serial.println(" Pa");
-  } else {
-    Serial.println("Não foi possível ler a pressão");
-  }
+  Serial.print("Pressao = ");
+  Serial.print(bmp.readPressure());
+  Serial.println(" Pa");
 
   delay(1000);
 }

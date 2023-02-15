@@ -1,6 +1,7 @@
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 #include <DHT.h>
+#include <Adafruit_BMP085.h>
 #include <SPIFFS.h>
 
 #define LDR 33
@@ -8,6 +9,7 @@
 #define DHT_TYPE DHT11
 
 DHT dht(DHT_PIN, DHT_TYPE);
+Adafruit_BMP085 bmp;
 
 const char* ssid     = "TP-Link_FFBC";
 const char* password = "sorriso0";
@@ -93,7 +95,7 @@ void setup() {
     html += "      <strong> Luminosity: </strong>";
     html += "      <span id='luminosity'> -% </span> <br>";
     html += "      <strong> Atmospheric pressure: </strong>";
-    html += "      <span id='atmospheric-pressure'> - Pa </span> <br>";
+    html += "      <span id='atmospheric-pressure'> - Atm </span> <br>";
     html += "    </article>";
     html += "";
     html += "    <footer>";
@@ -111,7 +113,7 @@ void setup() {
     request->send(200, "text/html", html);
   });
   server.on("/sensors", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plain", String(dht.readTemperature()) + " oC/" + String(dht.readHumidity()) + " %/" + String(100.0*analogRead(LDR)/4096.0) + " %/" + String(0) + " Pa");
+    request->send(200, "text/plain", String(dht.readTemperature()) + " oC/" + String(dht.readHumidity()) + " %/" + String(100.0*analogRead(LDR)/4096.0) + " %/" + String(bmp.readPressure()/101325.0) + " Atm");
   });
   server.serveStatic("/icon.png", SPIFFS, "/icon.png");
   server.serveStatic("/github.png", SPIFFS, "/github.png");
@@ -119,6 +121,7 @@ void setup() {
   server.begin();
 
   dht.begin();
+  bmp.begin();
   pinMode(LDR, INPUT);
 }
 
@@ -129,6 +132,8 @@ void loop() {
   Serial.println(dht.readHumidity());
   Serial.print("Luminosity: ");
   Serial.println(100.0*analogRead(LDR)/4096.0);
+  Serial.print("Atm: ");
+  Serial.println(bmp.readPressure()/101325.0);
   Serial.println();
   delay(500);
 }

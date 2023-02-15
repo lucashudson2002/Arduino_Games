@@ -1,4 +1,5 @@
 #include <DHT.h>
+#include <Adafruit_BMP085.h>
 
 #define BLYNK_TEMPLATE_ID "TMPLK4OfRcOw"
 #define BLYNK_DEVICE_NAME "Weather Station"
@@ -19,12 +20,14 @@ const char* password = "sorriso0";
 #define DHT_TYPE DHT11
 
 DHT dht(DHT_PIN, DHT_TYPE);
+Adafruit_BMP085 bmp;
 
 void setup() {
   Serial.begin(115200);
   Blynk.begin(auth, ssid, password);
 
   dht.begin();
+  bmp.begin();
   pinMode(LDR, INPUT);
 }
 
@@ -32,6 +35,6 @@ void loop() {
   Blynk.virtualWrite(V0, dht.readTemperature());
   Blynk.virtualWrite(V1, dht.readHumidity());
   Blynk.virtualWrite(V2, 100.0*analogRead(LDR)/4096.0);
-  Blynk.virtualWrite(V3, 5);
+  Blynk.virtualWrite(V3, bmp.readPressure());
   delay(1000);
 }

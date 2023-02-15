@@ -1,12 +1,15 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <DHT.h>
+#include <Adafruit_BMP085.h>
 
 #define LDR 33
 #define DHT_PIN 5
 #define DHT_TYPE DHT11
 
 DHT dht(DHT_PIN, DHT_TYPE);
+
+Adafruit_BMP085 bmp;
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
@@ -15,12 +18,14 @@ void setup() {
   lcd.backlight();
 
   dht.begin();
+
+  bmp.begin();
 }
 
 void loop() {
   lcd.setCursor(0, 0);
 
-  lcd.print("Luz:");
+  lcd.print("Lum:");
   int ldr = analogRead(LDR);
   ldr = 100.0*ldr/4096.0;
   lcd.print(ldr);
@@ -39,9 +44,8 @@ void loop() {
   lcd.print("% ");
 
   lcd.print("Atm:");
-  int atm = 1;
+  float atm = bmp.readPressure()/101325.0;
   lcd.print(atm);
-  lcd.print("atm");
 
   delay(1000);
 }
