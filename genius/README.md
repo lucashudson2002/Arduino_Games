@@ -1,40 +1,32 @@
 # Genius
 
-## Lista de materias
-- 5 botões 12x12 (vermelho, azul, amarelo, verde e branco)
-- 4 leds (vermelho, azul, amarelo e verde)
-- 3 leds 0805 (brancos)
-- 1 leds 5mm (branco)
-- 8 resistores 0805 1k
-- 1 ATMEGA328P-PU
-- 2 capacitores 0805 22pF
-- 1 capacitor 0805 100nF
-- 1 cristal 16Mhz
-- 1 AMS1117 5V
-- 2 capacitores 0805 10uF
-- 1 diodo M7
-- 1 chave on/off SS12D00G4
-- 1 borne kre 2 vias
-- 1 buzzer 5V 12mm
+Nesse projeto, foi reproduzido o famoso jogo Genius.
 
-## Tinkercad
-- Fiz uma simulação antes no Tinkercad para facilitar no primeiro teste tanto da eletrônica quando da programação, a foto está anexada abaixo:
+Primeiro, foi feito um circuito no Tinkercad para testes.
+
+Depois, foi desenvolvida uma PCB no Altium Designer.
+
+Por fim, código feito na Arduino IDE existem 3 modos de jogo:
+- 
+- 
+- 
+
+## Lista de materias
+- 5 BOTÕES 12x12 (vermelho, azul, amarelo, verde e branco)
+- 4 LEDS 0805 (vermelho, azul, amarelo e verde)
+- 3 LEDS 0805 (brancos)
+- 1 LED 5mm (branco)
+- 8 RESISTORES 0805 1k
+- 1 ATMEGA328P-PU
+- 2 CAPACITORES 0805 22pF
+- 1 CAPACITORES 0805 100nF
+- 2 CAPACITORES 0805 10uF
+- 1 CRISTAL OSCILADOR 16Mhz
+- 1 AMS1117 5V
+- 1 CHAVE ON/OFF SS12D00G4
+- 1 JACK P4
+- 1 BUZZER 5V 12mm
+- 1 BATERIA 9V
 
 ![](tinkercad_genius.png)
-
-## Software
-- Utilizei a Arduino IDE para programar.
-- O jogo é composto de 3 modos:
-
-.
-
-.
-
-.
-
-## Hardware
-- Utilizei o Altium Designer para projetar a PCB.
-- A biblioteca dos componentes pode ser encontra neste [link](https://github.com/lucashudson2002/altium-lib).
-
-![](top_genius.jpg)
-![](bottom_genius.jpg)
+![](altium_genius.png)
